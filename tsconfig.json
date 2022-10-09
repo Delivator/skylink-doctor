@@ -1,4 +1,7 @@
 {
+  "vueCompilerOptions": {
+    "target": 2
+  },
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -14,7 +17,8 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "vuetify"
     ],
     "paths": {
       "@/*": [
