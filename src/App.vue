@@ -12,34 +12,83 @@
                     v-model="skylink"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="3">
-                  <v-checkbox
-                    @click="onCheckbox"
-                    v-model="timeout1"
-                    label="1s"
-                  ></v-checkbox>
-                </v-col>
-                <v-col cols="3">
-                  <v-checkbox
-                    @click="onCheckbox"
-                    v-model="timeout2"
-                    label="2s"
-                  ></v-checkbox>
-                </v-col>
-                <v-col cols="3">
-                  <v-checkbox
-                    @click="onCheckbox"
-                    v-model="timeout5"
-                    label="5s"
-                  ></v-checkbox>
-                </v-col>
-                <v-col cols="3">
-                  <v-checkbox
-                    @click="onCheckbox"
-                    v-model="timeout10"
-                    label="10s"
-                  ></v-checkbox>
-                </v-col>
+                <v-row class="text-left">
+                  <v-col cols="6">
+                    <h3 class="h3 font-weight-regular">Portals:</h3>
+                    <v-row no-gutters>
+                      <v-col cols="4">
+                        <v-checkbox
+                          @click="onPortalCheckbox"
+                          v-model="portal1"
+                          label="Siasky.net"
+                        ></v-checkbox>
+                      </v-col>
+                      <v-col cols="4">
+                        <v-checkbox
+                          @click="onPortalCheckbox"
+                          v-model="portal2"
+                          label="Skynetfree.net"
+                        ></v-checkbox>
+                      </v-col>
+                      <v-col cols="4">
+                        <v-checkbox
+                          @click="onPortalCheckbox"
+                          v-model="portal3"
+                          label="Skynetpro.net"
+                        ></v-checkbox>
+                      </v-col>
+                      <v-col cols="4">
+                        <v-checkbox
+                          @click="onPortalCheckbox"
+                          v-model="portal4"
+                          label="Web3portal.com"
+                        ></v-checkbox>
+                      </v-col>
+                      <v-col cols="4">
+                        <v-checkbox
+                          @click="onPortalCheckbox"
+                          v-model="portal5"
+                          label="Skynet.cool"
+                        ></v-checkbox>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  <v-col cols="6">
+                    <h3 class="h3 font-weight-regular">
+                      Health check timeout:
+                    </h3>
+                    <v-row>
+                      <v-col cols="3">
+                        <v-checkbox
+                          @click="onTimeoutCheckbox"
+                          v-model="timeout1"
+                          label="1s"
+                        ></v-checkbox>
+                      </v-col>
+                      <v-col cols="3">
+                        <v-checkbox
+                          @click="onTimeoutCheckbox"
+                          v-model="timeout2"
+                          label="2s"
+                        ></v-checkbox>
+                      </v-col>
+                      <v-col cols="3">
+                        <v-checkbox
+                          @click="onTimeoutCheckbox"
+                          v-model="timeout5"
+                          label="5s"
+                        ></v-checkbox>
+                      </v-col>
+                      <v-col cols="3">
+                        <v-checkbox
+                          @click="onTimeoutCheckbox"
+                          v-model="timeout10"
+                          label="10s"
+                        ></v-checkbox>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                </v-row>
               </v-row>
             </v-form>
           </v-col>
@@ -102,57 +151,7 @@ interface Skylink {
 
 @Component
 export default class App extends Vue {
-  portals = [
-    // "https://eu-fin-1.siasky.net",
-    // "https://eu-fin-2.siasky.net",
-    // "https://eu-fin-3.siasky.net",
-    // "https://eu-fin-4.siasky.net",
-    // "https://eu-fin-5.siasky.net",
-    // "https://eu-fin-6.siasky.net",
-    // "https://eu-fin-9.siasky.net",
-    // "https://eu-fin-10.siasky.net",
-    // "https://eu-fin-11.siasky.net",
-    // "https://eu-fin-12.siasky.net",
-    // "https://eu-fin-13.siasky.net",
-    // "https://eu-fin-14.siasky.net",
-    // "https://eu-fin-15.siasky.net",
-    // "https://eu-ger-1.siasky.net",
-    // "https://eu-ger-2.siasky.net",
-    // "https://eu-ger-3.siasky.net",
-    // "https://eu-ger-4.siasky.net",
-    // "https://eu-ger-5.siasky.net",
-    // "https://eu-ger-6.siasky.net",
-    // "https://eu-ger-7.siasky.net",
-    // "https://eu-ger-8.siasky.net",
-    // "https://eu-ger-9.siasky.net",
-    // "https://eu-ger-10.siasky.net",
-    // "https://eu-ger-11.siasky.net",
-    // "https://eu-ger-12.siasky.net",
-    // "https://eu-pol-1.siasky.net",
-    // "https://eu-pol-2.siasky.net",
-    // "https://eu-pol-3.siasky.net",
-    // "https://eu-pol-4.siasky.net",
-    // "https://eu-pol-5.siasky.net",
-    // "https://us-pa-1.siasky.net",
-    // "https://us-pa-2.siasky.net",
-    // "https://us-va-1.siasky.net",
-    // "https://us-va-2.siasky.net",
-    // "https://us-va-3.siasky.net",
-    // "https://us-va-4.siasky.net",
-    // "https://us-va-5.siasky.net",
-    // "https://us-la-2.siasky.net",
-    "https://eu-nl-102.skynetfree.net",
-    "https://eu-nl-103.skynetfree.net",
-    "https://eu-nl-104.skynetfree.net",
-    "https://eu-nl-101.skynetpro.net",
-    "https://eu-pol-101.skynetpro.net",
-    "https://eu-pol-102.skynetpro.net",
-    "https://us-va-101.skynetpro.net",
-    // "https://us-tx-101.skynetpro.net",
-    // "https://us-tx-102.skynetpro.net",
-    "https://web3portal.com",
-    "https://skynet.cool",
-  ];
+  portals: string[] = [];
   skylink = "";
   pinLoading = -1;
   skylinks: Skylink[] = [];
@@ -162,11 +161,16 @@ export default class App extends Vue {
     { text: "Timeout", value: "timeout", width: 100 },
     { text: "Pin", value: "actions", sortable: false, width: 24 },
   ];
-  timeouts = [1, 2, 5];
+  timeouts: number[] = [];
   timeout1 = true;
   timeout2 = true;
   timeout5 = true;
   timeout10 = false;
+  portal1 = false;
+  portal2 = true;
+  portal3 = true;
+  portal4 = false;
+  portal5 = false;
 
   async getHealth(index: number) {
     const portal = this.portals[index];
@@ -195,6 +199,8 @@ export default class App extends Vue {
 
   async checkSkylink(e: Event) {
     e.preventDefault();
+    this.onTimeoutCheckbox();
+    this.onPortalCheckbox();
     this.skylinks = [];
     this.portals.forEach((portal, index) => {
       this.getHealth(index);
@@ -237,11 +243,13 @@ export default class App extends Vue {
   fetchHeaders(portal: string) {
     let headers = {};
     if (portal.includes("skynetfree.net")) {
-      headers = { "Skynet-Api-Key": process.env.SKYNETFREE_API_KEY };
+      headers = { "Skynet-Api-Key": process.env.VUE_APP_SKYNETFREE_API_KEY };
     } else if (portal.includes("skynetpro.net")) {
-      headers = { "Skynet-Api-Key": process.env.SKYNETPRO_API_KEY };
+      headers = { "Skynet-Api-Key": process.env.VUE_APP_SKYNETPRO_API_KEY };
     } else if (portal.includes("skynet.cool")) {
-      headers = { "Skynet-Api-Key": process.env.SKYNETCOOL_API_KEY };
+      headers = { "Skynet-Api-Key": process.env.VUE_APP_SKYNETCOOL_API_KEY };
+    } else if (portal.includes("web3portal.com")) {
+      headers = { "Skynet-Api-Key": process.env.VUE_APP_WEB3PORTAL_API_KEY };
     }
     return headers;
   }
@@ -253,13 +261,76 @@ export default class App extends Vue {
     else return "red";
   }
 
-  onCheckbox() {
+  onTimeoutCheckbox() {
     let newTimeouts = [];
     if (this.timeout1) newTimeouts.push(1);
     if (this.timeout2) newTimeouts.push(2);
     if (this.timeout5) newTimeouts.push(5);
     if (this.timeout10) newTimeouts.push(10);
     this.timeouts = newTimeouts;
+  }
+
+  onPortalCheckbox() {
+    let newPortals: string[] = [];
+    if (this.portal1)
+      newPortals.push(
+        "https://eu-fin-1.siasky.net",
+        "https://eu-fin-2.siasky.net",
+        "https://eu-fin-3.siasky.net",
+        "https://eu-fin-4.siasky.net",
+        "https://eu-fin-5.siasky.net",
+        "https://eu-fin-6.siasky.net",
+        "https://eu-fin-9.siasky.net",
+        "https://eu-fin-10.siasky.net",
+        "https://eu-fin-11.siasky.net",
+        "https://eu-fin-12.siasky.net",
+        "https://eu-fin-13.siasky.net",
+        "https://eu-fin-14.siasky.net",
+        "https://eu-fin-15.siasky.net",
+        "https://eu-ger-1.siasky.net",
+        "https://eu-ger-2.siasky.net",
+        "https://eu-ger-3.siasky.net",
+        "https://eu-ger-4.siasky.net",
+        "https://eu-ger-5.siasky.net",
+        "https://eu-ger-6.siasky.net",
+        "https://eu-ger-7.siasky.net",
+        "https://eu-ger-8.siasky.net",
+        "https://eu-ger-9.siasky.net",
+        "https://eu-ger-10.siasky.net",
+        "https://eu-ger-11.siasky.net",
+        "https://eu-ger-12.siasky.net",
+        "https://eu-pol-1.siasky.net",
+        "https://eu-pol-2.siasky.net",
+        "https://eu-pol-3.siasky.net",
+        "https://eu-pol-4.siasky.net",
+        "https://eu-pol-5.siasky.net",
+        "https://us-pa-1.siasky.net",
+        "https://us-pa-2.siasky.net",
+        "https://us-va-1.siasky.net",
+        "https://us-va-2.siasky.net",
+        "https://us-va-3.siasky.net",
+        "https://us-va-4.siasky.net",
+        "https://us-va-5.siasky.net",
+        "https://us-la-2.siasky.net"
+      );
+    if (this.portal2)
+      newPortals.push(
+        "https://eu-nl-102.skynetfree.net",
+        "https://eu-nl-103.skynetfree.net",
+        "https://eu-nl-104.skynetfree.net"
+      );
+    if (this.portal3)
+      newPortals.push(
+        "https://eu-nl-101.skynetpro.net",
+        "https://eu-pol-101.skynetpro.net",
+        "https://eu-pol-102.skynetpro.net",
+        "https://us-va-101.skynetpro.net",
+        "https://us-tx-101.skynetpro.net",
+        "https://us-tx-102.skynetpro.net"
+      );
+    if (this.portal4) newPortals.push("https://web3portal.com");
+    if (this.portal5) newPortals.push("https://skynet.cool");
+    this.portals = newPortals;
   }
 }
 </script>
