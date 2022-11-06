@@ -116,13 +116,7 @@
                 :items-per-page="-1"
               >
                 <template #[`item.portal`]="{ item }">
-                  <div
-                    :class="
-                      item.portal.includes('net.cool')
-                        ? 'light-green--text'
-                        : ''
-                    "
-                  >
+                  <div>
                     {{ item.portal }}
                   </div>
                 </template>
