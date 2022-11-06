@@ -5,90 +5,102 @@
         <v-row class="text-center mt-8">
           <v-col cols="12">
             <v-form @submit="checkSkylink">
-              <v-row no-gutters>
+              <v-row no-gutters class="text-left">
                 <v-col cols="12">
                   <v-text-field
                     label="Skylink"
                     v-model="skylink"
                   ></v-text-field>
                 </v-col>
-                <v-row class="text-left">
-                  <v-col cols="6">
-                    <h3 class="h3 font-weight-regular">Portals:</h3>
-                    <v-row no-gutters>
-                      <v-col cols="4">
-                        <v-checkbox
-                          @click="onPortalCheckbox"
-                          v-model="portal1"
-                          label="Siasky.net"
-                        ></v-checkbox>
-                      </v-col>
-                      <v-col cols="4">
-                        <v-checkbox
-                          @click="onPortalCheckbox"
-                          v-model="portal2"
-                          label="Skynetfree.net"
-                        ></v-checkbox>
-                      </v-col>
-                      <v-col cols="4">
-                        <v-checkbox
-                          @click="onPortalCheckbox"
-                          v-model="portal3"
-                          label="Skynetpro.net"
-                        ></v-checkbox>
-                      </v-col>
-                      <v-col cols="4">
-                        <v-checkbox
-                          @click="onPortalCheckbox"
-                          v-model="portal4"
-                          label="Web3portal.com"
-                        ></v-checkbox>
-                      </v-col>
-                      <v-col cols="4">
-                        <v-checkbox
-                          @click="onPortalCheckbox"
-                          v-model="portal5"
-                          label="Skynet.cool"
-                        ></v-checkbox>
-                      </v-col>
-                    </v-row>
-                  </v-col>
-                  <v-col cols="6">
-                    <h3 class="h3 font-weight-regular">
-                      Health check timeout:
-                    </h3>
-                    <v-row>
-                      <v-col cols="3">
-                        <v-checkbox
-                          @click="onTimeoutCheckbox"
-                          v-model="timeout1"
-                          label="1s"
-                        ></v-checkbox>
-                      </v-col>
-                      <v-col cols="3">
-                        <v-checkbox
-                          @click="onTimeoutCheckbox"
-                          v-model="timeout2"
-                          label="2s"
-                        ></v-checkbox>
-                      </v-col>
-                      <v-col cols="3">
-                        <v-checkbox
-                          @click="onTimeoutCheckbox"
-                          v-model="timeout5"
-                          label="5s"
-                        ></v-checkbox>
-                      </v-col>
-                      <v-col cols="3">
-                        <v-checkbox
-                          @click="onTimeoutCheckbox"
-                          v-model="timeout10"
-                          label="10s"
-                        ></v-checkbox>
-                      </v-col>
-                    </v-row>
-                  </v-col>
-                </v-row>
+                <v-col cols="12">
+                  <v-list>
+                    <v-list-group :value="false" prepend-icon="mdi-cog">
+                      <template v-slot:activator>
+                        <v-list-item-title>Options</v-list-item-title>
+                      </template>
+
+                      <v-list-item>
+                        <v-row>
+                          <v-col cols="6">
+                            <h3 class="h3 font-weight-regular">Portals:</h3>
+                            <v-row no-gutters>
+                              <v-col cols="4">
+                                <v-checkbox
+                                  @click="onPortalCheckbox"
+                                  v-model="portal1"
+                                  label="Siasky.net"
+                                ></v-checkbox>
+                              </v-col>
+                              <v-col cols="4">
+                                <v-checkbox
+                                  @click="onPortalCheckbox"
+                                  v-model="portal2"
+                                  label="Skynetfree.net"
+                                ></v-checkbox>
+                              </v-col>
+                              <v-col cols="4">
+                                <v-checkbox
+                                  @click="onPortalCheckbox"
+                                  v-model="portal3"
+                                  label="Skynetpro.net"
+                                ></v-checkbox>
+                              </v-col>
+                              <v-col cols="4">
+                                <v-checkbox
+                                  @click="onPortalCheckbox"
+                                  v-model="portal4"
+                                  label="Web3portal.com"
+                                ></v-checkbox>
+                              </v-col>
+                              <v-col cols="4">
+                                <v-checkbox
+                                  @click="onPortalCheckbox"
+                                  v-model="portal5"
+                                  label="Skynet.cool"
+                                ></v-checkbox>
+                              </v-col>
+                            </v-row>
+                          </v-col>
+                          <v-col cols="6">
+                            <h3 class="h3 font-weight-regular">
+                              Health check timeout:
+                            </h3>
+                            <v-row>
+                              <v-col cols="3">
+                                <v-checkbox
+                                  @click="onTimeoutCheckbox"
+                                  v-model="timeout1"
+                                  label="1s"
+                                ></v-checkbox>
+                              </v-col>
+                              <v-col cols="3">
+                                <v-checkbox
+                                  @click="onTimeoutCheckbox"
+                                  v-model="timeout2"
+                                  label="2s"
+                                ></v-checkbox>
+                              </v-col>
+                              <v-col cols="3">
+                                <v-checkbox
+                                  @click="onTimeoutCheckbox"
+                                  v-model="timeout5"
+                                  label="5s"
+                                ></v-checkbox>
+                              </v-col>
+                              <v-col cols="3">
+                                <v-checkbox
+                                  @click="onTimeoutCheckbox"
+                                  v-model="timeout10"
+                                  label="10s"
+                                ></v-checkbox>
+                              </v-col>
+                            </v-row>
+                          </v-col>
+                        </v-row>
+                      </v-list-item>
+                    </v-list-group>
+                  </v-list>
+                </v-col>
               </v-row>
             </v-form>
           </v-col>
@@ -153,7 +165,6 @@ interface Skylink {
 export default class App extends Vue {
   portals: string[] = [];
   skylink = "";
-  pinLoading = -1;
   skylinks: Skylink[] = [];
   headers = [
     { text: "Portal", value: "portal" },
@@ -164,7 +175,7 @@ export default class App extends Vue {
   timeouts: number[] = [];
   timeout1 = true;
   timeout2 = true;
-  timeout5 = true;
+  timeout5 = false;
   timeout10 = false;
   portal1 = false;
   portal2 = true;
@@ -199,6 +210,7 @@ export default class App extends Vue {
 
   async checkSkylink(e: Event) {
     e.preventDefault();
+    this.setLocalStorage();
     this.onTimeoutCheckbox();
     this.onPortalCheckbox();
     this.skylinks = [];
@@ -262,6 +274,7 @@ export default class App extends Vue {
   }
 
   onTimeoutCheckbox() {
+    this.setLocalStorage();
     let newTimeouts = [];
     if (this.timeout1) newTimeouts.push(1);
     if (this.timeout2) newTimeouts.push(2);
@@ -271,6 +284,7 @@ export default class App extends Vue {
   }
 
   onPortalCheckbox() {
+    this.setLocalStorage();
     let newPortals: string[] = [];
     if (this.portal1)
       newPortals.push(
@@ -331,6 +345,43 @@ export default class App extends Vue {
     if (this.portal4) newPortals.push("https://web3portal.com");
     if (this.portal5) newPortals.push("https://skynet.cool");
     this.portals = newPortals;
+  }
+
+  setLocalStorage() {
+    const settings = {
+      skylink: this.skylink,
+      skylinks: this.skylinks,
+      timeout1: this.timeout1,
+      timeout2: this.timeout2,
+      timeout5: this.timeout5,
+      timeout10: this.timeout10,
+      portal1: this.portal1,
+      portal2: this.portal2,
+      portal3: this.portal3,
+      portal4: this.portal4,
+      portal5: this.portal5,
+    };
+    localStorage.setItem("sldSettings", JSON.stringify(settings));
+  }
+
+  loadLocalStorage() {
+    const settings = JSON.parse(localStorage.getItem("sldSettings") ?? "");
+    this.skylink = settings.skylink;
+    this.skylinks = settings.skylinks;
+    this.timeout1 = settings.timeout1;
+    this.timeout2 = settings.timeout2;
+    this.timeout5 = settings.timeout5;
+    this.timeout10 = settings.timeout10;
+    this.portal1 = settings.portal1;
+    this.portal2 = settings.portal2;
+    this.portal3 = settings.portal3;
+    this.portal4 = settings.portal4;
+    this.portal5 = settings.portal5;
+  }
+
+  mounted() {
+    if (!localStorage.getItem("sldSettings")) this.setLocalStorage();
+    this.loadLocalStorage();
   }
 }
 </script>
