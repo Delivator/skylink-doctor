@@ -1,8 +1,6 @@
 # skylink-doctor
 
-This tool is meant to run locally, any secrets you set in the env file will also be included in your build.
-
-If you want to use portals that require authentication for pinning or checking the health of skylinks, set the api keys for those portals in the `.env.local`
+If you want to use portals that require authentication for pinning or checking the health of skylinks, set the api keys for those portals in the options
 
 ## Project setup
 Requires Nodejs.

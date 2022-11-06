@@ -10,6 +10,8 @@
                   <v-text-field
                     label="Skylink"
                     v-model="skylink"
+                    append-icon="mdi-magnify"
+                    @click:append="checkSkylink"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12">
@@ -96,6 +98,41 @@
                               </v-col>
                             </v-row>
                           </v-col>
+                          <v-col cols="12">
+                            <h3 class="h3 font-weight-regular">
+                              Portal API Keys:
+                            </h3>
+                            <v-row>
+                              <v-col cols="6">
+                                <v-text-field
+                                  @input="textInput"
+                                  label="Skynetfree.net API Key"
+                                  v-model="SKYNETFREE_API_KEY"
+                                ></v-text-field>
+                              </v-col>
+                              <v-col cols="6">
+                                <v-text-field
+                                  @input="textInput"
+                                  label="Skynetpro.net API Key"
+                                  v-model="SKYNETPRO_API_KEY"
+                                ></v-text-field>
+                              </v-col>
+                              <v-col cols="6">
+                                <v-text-field
+                                  @input="textInput"
+                                  label="Web3portal.com API Key"
+                                  v-model="WEB3PORTAL_API_KEY"
+                                ></v-text-field>
+                              </v-col>
+                              <v-col cols="6">
+                                <v-text-field
+                                  @input="textInput"
+                                  label="Skynet.cool API Key"
+                                  v-model="SKYNETCOOL_API_KEY"
+                                ></v-text-field>
+                              </v-col>
+                            </v-row>
+                          </v-col>
                         </v-row>
                       </v-list-item>
                     </v-list-group>
@@ -176,6 +213,10 @@ export default class App extends Vue {
   portal3 = true;
   portal4 = false;
   portal5 = false;
+  SKYNETFREE_API_KEY = "";
+  SKYNETPRO_API_KEY = "";
+  SKYNETCOOL_API_KEY = "";
+  WEB3PORTAL_API_KEY = "";
 
   async getHealth(index: number) {
     const portal = this.portals[index];
@@ -249,13 +290,13 @@ export default class App extends Vue {
   fetchHeaders(portal: string) {
     let headers = {};
     if (portal.includes("skynetfree.net")) {
-      headers = { "Skynet-Api-Key": process.env.VUE_APP_SKYNETFREE_API_KEY };
+      headers = { "Skynet-Api-Key": this.SKYNETFREE_API_KEY };
     } else if (portal.includes("skynetpro.net")) {
-      headers = { "Skynet-Api-Key": process.env.VUE_APP_SKYNETPRO_API_KEY };
+      headers = { "Skynet-Api-Key": this.SKYNETPRO_API_KEY };
     } else if (portal.includes("skynet.cool")) {
-      headers = { "Skynet-Api-Key": process.env.VUE_APP_SKYNETCOOL_API_KEY };
+      headers = { "Skynet-Api-Key": this.SKYNETCOOL_API_KEY };
     } else if (portal.includes("web3portal.com")) {
-      headers = { "Skynet-Api-Key": process.env.VUE_APP_WEB3PORTAL_API_KEY };
+      headers = { "Skynet-Api-Key": this.WEB3PORTAL_API_KEY };
     }
     return headers;
   }
@@ -354,6 +395,10 @@ export default class App extends Vue {
       portal3: this.portal3,
       portal4: this.portal4,
       portal5: this.portal5,
+      SKYNETFREE_API_KEY: this.SKYNETFREE_API_KEY,
+      SKYNETPRO_API_KEY: this.SKYNETPRO_API_KEY,
+      SKYNETCOOL_API_KEY: this.SKYNETCOOL_API_KEY,
+      WEB3PORTAL_API_KEY: this.WEB3PORTAL_API_KEY,
     };
     localStorage.setItem("sldSettings", JSON.stringify(settings));
   }
@@ -371,6 +416,14 @@ export default class App extends Vue {
     this.portal3 = settings.portal3;
     this.portal4 = settings.portal4;
     this.portal5 = settings.portal5;
+    this.SKYNETFREE_API_KEY = settings.SKYNETFREE_API_KEY;
+    this.SKYNETPRO_API_KEY = settings.SKYNETPRO_API_KEY;
+    this.SKYNETCOOL_API_KEY = settings.SKYNETCOOL_API_KEY;
+    this.WEB3PORTAL_API_KEY = settings.WEB3PORTAL_API_KEY;
+  }
+
+  textInput() {
+    this.setLocalStorage();
   }
 
   mounted() {
